@@ -1,0 +1,14 @@
+C:\Users\reedchr001\source\repos\RPGWPF\RPGWPF\bin\Release\RPGWPF.exe.config
+C:\Users\reedchr001\source\repos\RPGWPF\RPGWPF\bin\Release\RPGWPF.exe
+C:\Users\reedchr001\source\repos\RPGWPF\RPGWPF\bin\Release\RPGWPF.pdb
+C:\Users\reedchr001\source\repos\RPGWPF\RPGWPF\obj\Release\MainWindow.g.cs
+C:\Users\reedchr001\source\repos\RPGWPF\RPGWPF\obj\Release\App.g.cs
+C:\Users\reedchr001\source\repos\RPGWPF\RPGWPF\obj\Release\RPGWPF_MarkupCompile.cache
+C:\Users\reedchr001\source\repos\RPGWPF\RPGWPF\obj\Release\RPGWPF_MarkupCompile.lref
+C:\Users\reedchr001\source\repos\RPGWPF\RPGWPF\obj\Release\MainWindow.baml
+C:\Users\reedchr001\source\repos\RPGWPF\RPGWPF\obj\Release\RPGWPF.g.resources
+C:\Users\reedchr001\source\repos\RPGWPF\RPGWPF\obj\Release\RPGWPF.Properties.Resources.resources
+C:\Users\reedchr001\source\repos\RPGWPF\RPGWPF\obj\Release\RPGWPF.csproj.GenerateResource.cache
+C:\Users\reedchr001\source\repos\RPGWPF\RPGWPF\obj\Release\RPGWPF.csproj.CoreCompileInputs.cache
+C:\Users\reedchr001\source\repos\RPGWPF\RPGWPF\obj\Release\RPGWPF.exe
+C:\Users\reedchr001\source\repos\RPGWPF\RPGWPF\obj\Release\RPGWPF.pdb

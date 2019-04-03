@@ -3,20 +3,16 @@ using System.Collections.Generic;
 using System.IO;
 using Newtonsoft.Json.Linq;
 using System.Drawing;
-using System.Windows.Forms;
-using RPGWinForms;
 using System.Threading.Tasks;
 
 namespace RPGv2
 {
     internal class HelperClasses
     {
-        public static Form1 form = new Form1();
 
         [STAThread]
         public static void MainProgram()
         {
-            Task.Run(() => Application.Run(form));
             StateManager sm = new StateManager();
             bool done = false;
             while (!done)

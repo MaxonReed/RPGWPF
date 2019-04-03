@@ -429,7 +429,6 @@ namespace RPGv2
                     }
                 }
                 #endregion
-                HelperClasses.form.LoadMap(h.Map);
             }
 
             h.Races = races;

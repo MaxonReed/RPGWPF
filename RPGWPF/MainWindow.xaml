@@ -15,12 +15,6 @@
                 <TranslateTransform/>
             </TransformGroup>
         </Grid.RenderTransform>
-        <Button Content="Click Me" HorizontalAlignment="Left" Margin="210,116,0,0" VerticalAlignment="Top" Width="179" Height="143">
-            <Button.Template>
-                <ControlTemplate>
-                    <Image Source="../Dependencies/"/>
-                </ControlTemplate>
-            </Button.Template>
-        </Button>
+        <Button Content="Start" HorizontalAlignment="Left" Margin="308,248,0,0" VerticalAlignment="Top" Width="332" Height="143" FontSize="48" Click="Button_Click"/>
     </Grid>
 </Window>

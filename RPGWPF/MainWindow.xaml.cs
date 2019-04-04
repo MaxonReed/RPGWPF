@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using RPGv2;
 
 namespace RPGWPF
 {
@@ -24,10 +25,15 @@ namespace RPGWPF
         {
             InitializeComponent();
         }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
+        public void ChangeContent(object obj)
         {
-
+            this.Content = obj;
+        }
+        private void Start_Click(object sender, RoutedEventArgs e)
+        {
+            //StartPage page = new StartPage();
+            //this.Content = page;
+            HelperClasses.MainProgram();
         }
     }
 }

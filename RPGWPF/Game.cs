@@ -6,6 +6,10 @@ namespace RPGv2
 {
     internal class Game
     {
+        HelperClasses hc = new HelperClasses();
+
+        internal HelperClasses HC { get => HC; set => HC = value; }
+
         public static void StartGame()
         {
             int yearInput;

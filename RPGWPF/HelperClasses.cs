@@ -4,12 +4,14 @@ using System.IO;
 using Newtonsoft.Json.Linq;
 using System.Drawing;
 using System.Threading.Tasks;
+using RPGWPF;
+using System.Windows;
 
 namespace RPGv2
 {
     internal class HelperClasses
     {
-
+        int inp = -1;
         [STAThread]
         public static void MainProgram()
         {
@@ -41,10 +43,20 @@ namespace RPGv2
                 return random.Next(min, max);
             }
         }
+
+        public static void ChangeContent(object cont)
+        {
+            Application.Current.MainWindow.Content = cont;
+        }
+
         public static bool Start(bool done)
         {
-            Console.Clear();
+            ChangeContent(new StartPage());
             int inp = MultipleChoice(false, "Start", "Modify JSON files", "Exit");
+            do
+            {
+
+            } while (inp == -1);
             switch (inp)
             {
                 case 0:

@@ -3,18 +3,12 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
         xmlns:local="clr-namespace:RPGWPF"
         mc:Ignorable="d"
         Title="MainWindow" Height="500" Width="1000">
     <Grid RenderTransformOrigin="0.5,0.5">
-        <Grid.RenderTransform>
-            <TransformGroup>
-                <ScaleTransform/>
-                <SkewTransform/>
-                <RotateTransform Angle="0.106"/>
-                <TranslateTransform/>
-            </TransformGroup>
-        </Grid.RenderTransform>
-        <Button Content="Start" HorizontalAlignment="Left" Margin="308,248,0,0" VerticalAlignment="Top" Width="332" Height="143" FontSize="48" Click="Button_Click"/>
+        <Frame x:Name="navFrame" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"/>
+        <Button Content="Start" HorizontalAlignment="Left" Margin="311,170,0,0" VerticalAlignment="Top" Width="332" Height="143" FontSize="48" Click="Start_Click"/>
     </Grid>
 </Window>

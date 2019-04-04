@@ -13,6 +13,7 @@ namespace RPGv2
         public static void StartGame()
         {
             int yearInput;
+            Debug.WriteLine("hello");
             do { Console.Write("Enter years of history: "); } while (!int.TryParse(Console.ReadLine(), out yearInput));
             Stopwatch sw = new Stopwatch();
             sw.Start();

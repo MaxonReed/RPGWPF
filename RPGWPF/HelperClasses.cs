@@ -6,30 +6,25 @@ using System.Drawing;
 using System.Threading.Tasks;
 using RPGWPF;
 using System.Windows;
+using System.Diagnostics;
 
 namespace RPGv2
 {
     internal class HelperClasses
     {
-        int inp = -1;
         [STAThread]
         public static void MainProgram()
         {
             StateManager sm = new StateManager();
-            bool done = false;
-            while (!done)
+            switch (sm.GetState())
             {
-                switch (sm.GetState())
-                {
-                    case "start":
-                        if (Start(done))
-                            done = true;
-                        break;
-                    default:
-                        Console.Clear();
-                        Console.WriteLine("A state error has occured. State: {0}", sm.GetState());
-                        break;
-                }
+                case "start":
+                    Start();
+                    break;
+                default:
+                    Console.Clear();
+                    Console.WriteLine("A state error has occured. State: {0}", sm.GetState());
+                    break;
             }
         }
 
@@ -49,88 +44,89 @@ namespace RPGv2
             Application.Current.MainWindow.Content = cont;
         }
 
-        public static bool Start(bool done)
+        public static bool Start()
         {
-            ChangeContent(Pages.sPage);
-            int inp = Pages.sPage.WaitForInput();
-            GlobalValues.Inp = -1;
-            switch (inp)
-            {
-                case 0:
-                    Game.StartGame();
-                    return false;
-                case 1:
-                    /*
-                    string[] jsonFiles = Directory.GetFiles("Dependencies");
-                    for (int i = 0; i < jsonFiles.Length; i++)
-                        jsonFiles[i] = jsonFiles[i].Remove(0, 13);
-                    inp = MultipleChoice(false, jsonFiles);
-                    JArray arr = JArray.Parse(File.ReadAllText(string.Format(@"Dependencies\{0}", jsonFiles[inp])));
-                    int inpIndex = inp;
-                    string path = string.Format(@"Dependencies\{0}", jsonFiles[inp]);
-                    inp = MultipleChoice(false, "Add", "Modify");
-                    List<string> options = new List<string>();
-                    JObject o;
-                    string newVal;
-                    switch (inp)
-                    {
-                        case 0:
-                            options.Clear();
-                            o = JObject.Parse(arr[0].ToString());
-                            foreach (JProperty jp in o.Properties())
-                                options.Add(jp.Name);
-                            for (int i = 0; i < options.Count; i++)
-                            {
-                                Console.Write("Value of {0}: ", options[i]);
-                                newVal = Console.ReadLine();
-                                if (o[options[i]].Type == JTokenType.String)
-                                    o[options[i]] = newVal;
-                                if (o[options[i]].Type == JTokenType.Integer)
-                                    o[options[i]] = int.Parse(newVal);
-                                if (o[options[i]].Type == JTokenType.Float)
-                                    o[options[i]] = float.Parse(newVal);
-                                if (o[options[i]].Type == JTokenType.Boolean)
-                                    o[options[i]] = bool.Parse(newVal);
-                            }
-                            arr.Add(o);
-                            File.WriteAllText(path, arr.ToString());
-                            break;
-                        case 1:
-                            foreach (JObject obj in arr)
-                                options.Add((string)obj["Name"]);
-                            inp = MultipleChoice(false, options.ToArray());
-                            options.Clear();
-                            o = JObject.Parse(arr[inp].ToString());
-                            foreach (JProperty jp in o.Properties())
-                                options.Add(jp.Name);
-                            List<string> optionsTemp = new List<string>(options);
-                            for (int i = 0; i < optionsTemp.Count; i++)
-                                optionsTemp[i] = string.Format("{0} ({1})", optionsTemp[i], o[optionsTemp[i]]);
-                            inp = MultipleChoice(false, optionsTemp.ToArray());
-                            Console.Write("Enter new value: ");
-                            newVal = Console.ReadLine();
-                            if (o[options[inp]].Type == JTokenType.String)
-                                o[options[inp]] = newVal;
-                            if (o[options[inp]].Type == JTokenType.Integer)
-                                o[options[inp]] = int.Parse(newVal);
-                            if (o[options[inp]].Type == JTokenType.Float)
-                                o[options[inp]] = float.Parse(newVal);
-                            arr[inpIndex] = o;
-                            File.WriteAllText(path, arr.ToString());
-                            break;
-                        default:
-                            break;
-                    }
-                    return false;
-                    */
-                    break;
-                case 2:
-                    return true;
-                default:
-                    break;
-            }
+            Application.Current.MainWindow.Content = new StartPage();
+            //switch (GlobalValues.Inp)
+            //{
+            //    case 0:
+            //        Game.StartGame();
+            //        GlobalValues.Inp = -1;
+            //        return false;
+            //    case 1:
+            //        /*
+            //        string[] jsonFiles = Directory.GetFiles("Dependencies");
+            //        for (int i = 0; i < jsonFiles.Length; i++)
+            //            jsonFiles[i] = jsonFiles[i].Remove(0, 13);
+            //        inp = MultipleChoice(false, jsonFiles);
+            //        JArray arr = JArray.Parse(File.ReadAllText(string.Format(@"Dependencies\{0}", jsonFiles[inp])));
+            //        int inpIndex = inp;
+            //        string path = string.Format(@"Dependencies\{0}", jsonFiles[inp]);
+            //        inp = MultipleChoice(false, "Add", "Modify");
+            //        List<string> options = new List<string>();
+            //        JObject o;
+            //        string newVal;
+            //        switch (inp)
+            //        {
+            //            case 0:
+            //                options.Clear();
+            //                o = JObject.Parse(arr[0].ToString());
+            //                foreach (JProperty jp in o.Properties())
+            //                    options.Add(jp.Name);
+            //                for (int i = 0; i < options.Count; i++)
+            //                {
+            //                    Console.Write("Value of {0}: ", options[i]);
+            //                    newVal = Console.ReadLine();
+            //                    if (o[options[i]].Type == JTokenType.String)
+            //                        o[options[i]] = newVal;
+            //                    if (o[options[i]].Type == JTokenType.Integer)
+            //                        o[options[i]] = int.Parse(newVal);
+            //                    if (o[options[i]].Type == JTokenType.Float)
+            //                        o[options[i]] = float.Parse(newVal);
+            //                    if (o[options[i]].Type == JTokenType.Boolean)
+            //                        o[options[i]] = bool.Parse(newVal);
+            //                }
+            //                arr.Add(o);
+            //                File.WriteAllText(path, arr.ToString());
+            //                break;
+            //            case 1:
+            //                foreach (JObject obj in arr)
+            //                    options.Add((string)obj["Name"]);
+            //                inp = MultipleChoice(false, options.ToArray());
+            //                options.Clear();
+            //                o = JObject.Parse(arr[inp].ToString());
+            //                foreach (JProperty jp in o.Properties())
+            //                    options.Add(jp.Name);
+            //                List<string> optionsTemp = new List<string>(options);
+            //                for (int i = 0; i < optionsTemp.Count; i++)
+            //                    optionsTemp[i] = string.Format("{0} ({1})", optionsTemp[i], o[optionsTemp[i]]);
+            //                inp = MultipleChoice(false, optionsTemp.ToArray());
+            //                Console.Write("Enter new value: ");
+            //                newVal = Console.ReadLine();
+            //                if (o[options[inp]].Type == JTokenType.String)
+            //                    o[options[inp]] = newVal;
+            //                if (o[options[inp]].Type == JTokenType.Integer)
+            //                    o[options[inp]] = int.Parse(newVal);
+            //                if (o[options[inp]].Type == JTokenType.Float)
+            //                    o[options[inp]] = float.Parse(newVal);
+            //                arr[inpIndex] = o;
+            //                File.WriteAllText(path, arr.ToString());
+            //                break;
+            //            default:
+            //                break;
+            //        }
+            //        return false;
+            //        */
+            //        GlobalValues.Inp = -1;
+            //        break;
+            //    case 2:
+            //        GlobalValues.Inp = -1;
+            //        return true;
+            //    default:
+            //        break;
+            //}
+            //GlobalValues.Inp = -1;
             return false;
-
         }
 
         public static int MultipleChoice(bool canCancel, params string[] options)

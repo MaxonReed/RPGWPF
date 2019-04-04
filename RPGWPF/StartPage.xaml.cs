@@ -27,15 +27,6 @@ namespace RPGWPF
             InitializeComponent();
         }
 
-        public int WaitForInput()
-        {
-            do
-            {
-
-            } while (GlobalValues.Inp == -1);
-            return GlobalValues.Inp;
-        }
-
         public void ChangeInp(int inp)
         {
             GlobalValues.Inp = inp;
@@ -43,15 +34,16 @@ namespace RPGWPF
 
         private void Button0_Click(object sender, RoutedEventArgs e)
         {
-            ChangeInp(0);
+            Game.StartGame();
+            return;
         }
         private void Button1_Click(object sender, RoutedEventArgs e)
         {
-            ChangeInp(1);
+            return;
         }
         private void Button2_Click(object sender, RoutedEventArgs e)
         {
-            ChangeInp(2);
+            return;
         }
     }
 }

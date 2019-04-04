@@ -51,18 +51,16 @@ namespace RPGv2
 
         public static bool Start(bool done)
         {
-            ChangeContent(new StartPage());
-            int inp = MultipleChoice(false, "Start", "Modify JSON files", "Exit");
-            do
-            {
-
-            } while (inp == -1);
+            ChangeContent(Pages.sPage);
+            int inp = Pages.sPage.WaitForInput();
+            GlobalValues.Inp = -1;
             switch (inp)
             {
                 case 0:
                     Game.StartGame();
                     return false;
                 case 1:
+                    /*
                     string[] jsonFiles = Directory.GetFiles("Dependencies");
                     for (int i = 0; i < jsonFiles.Length; i++)
                         jsonFiles[i] = jsonFiles[i].Remove(0, 13);
@@ -124,6 +122,8 @@ namespace RPGv2
                             break;
                     }
                     return false;
+                    */
+                    break;
                 case 2:
                     return true;
                 default:
@@ -203,6 +203,24 @@ namespace RPGv2
             Console.Clear();
             return currentSelection;
         }
+    }
+
+    public class GlobalValues
+    {
+        public static int inp = -1;
+
+        public static int Inp
+        {
+            get => inp;
+
+            set => inp = value;
+        }
+
+    }
+
+    public class Pages
+    {
+        public static StartPage sPage = new StartPage();
     }
 
     public class Map

@@ -9,7 +9,14 @@
       Title="HistorySim">
 
     <Grid Background="White">
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="38,35,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="Years of History"/>
+        <TextBox x:Name="TextBox1" HorizontalAlignment="Left" Height="21" Margin="38,35,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="104"/>
+        <Button Content="Enter" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="159,35,0,0" Height="21" Click="Button_Click"/>
+        <Image HorizontalAlignment="Left" Height="284" VerticalAlignment="Top" Width="428" Margin="38,111,0,0"/>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="284" Stroke="Black" VerticalAlignment="Top" Width="201" Margin="539,111,0,0"/>
+        <TextBlock x:Name="YearNum" Text="{Binding Path=YearText}" HorizontalAlignment="Left" Margin="574,160,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="133" Height="23"/>
+        <TextBlock x:Name="FactionCreated" Text="{Binding Path=FactionCreatedText}" HorizontalAlignment="Left" Margin="574,265,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="133" Height="23"/>
+        <TextBlock x:Name="FactionFell" Text="{Binding Path=FactionFallenText}" HorizontalAlignment="Left" Margin="574,340,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="133" Height="23"/>
+        <TextBlock x:Name="EventName" Text="{Binding Path=EventNameText}" HorizontalAlignment="Left" Margin="574,209,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="133" Height="23"/>
 
     </Grid>
 </Page>

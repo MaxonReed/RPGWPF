@@ -7,20 +7,15 @@ namespace RPGv2
     internal class Game
     {
         HelperClasses hc = new HelperClasses();
-
+        public static History hist = new History();
         internal HelperClasses HC { get => HC; set => HC = value; }
 
         public static void StartGame()
         {
-            int yearInput;
-            Debug.WriteLine("hello");
-            do { Console.Write("Enter years of history: "); } while (!int.TryParse(Console.ReadLine(), out yearInput));
-            Stopwatch sw = new Stopwatch();
-            sw.Start();
-            History h = StartHistory(yearInput);
-            Console.Clear();
-            Console.WriteLine("Elapsed time: {0}", sw.Elapsed.Milliseconds / 1000.0);
+            HelperClasses.ChangeContent(Pages.hsPage);
+            /*
             bool done = false;
+            
             while (!done)
             {
                 Console.Write(">");
@@ -69,29 +64,26 @@ namespace RPGv2
                         break;
                 }
             }
+
             Console.ReadKey();
+            */
         }
         public static History StartHistory(int years)
         {
-            const bool DISPLAY = true;
             EventList el = new EventList();
             History h = new History();
             h.Map = new Map(@"Dependencies\Maps\NewMap.png");
 
-            Console.Clear();
-            if (DISPLAY)
-            {
-                Console.Clear();
-                Console.WriteLine("Year: ");
-                Console.WriteLine("Event: ");
-            }
+            Pages.hsPage.YearText = "Year: ";
+            Pages.hsPage.EventNameText = "Event: ";
+
             List<Race> races = new List<Race>();
             List<Faction> factions = new List<Faction>();
             for (int i = 0; i < Race.RacesAmount(); i++)
             {
                 races.Add(new Race(i, new Random().Next(30000)));
             }
-            
+
             Random rand = new Random();
             for (int i = 0; i < races.Count; i++)
             {
@@ -143,7 +135,7 @@ namespace RPGv2
                     }
                 }
             }
-            
+
             int totalPeople = 0;
             double averagePopSeverity = 0;
             while (factions.Count >= h.Map.GetLandCount())
@@ -160,19 +152,14 @@ namespace RPGv2
                         factions.Remove(f);
                 }
             }
-            foreach(Faction fac in factions.ToArray())
+            foreach (Faction fac in factions.ToArray())
             {
                 h.Map.InitFaction(fac);
             }
             for (int i = 0; i <= years; i++)
             {
-                if (DISPLAY)
-                {
-                    Console.SetCursorPosition(6, 0);
-                    Console.Write("                ");
-                    Console.SetCursorPosition(6, 0);
-                    Console.Write(i);
-                }
+                Pages.hsPage.YearText = "Year: " + i;
+
                 totalPeople = 0;
                 averagePopSeverity = 0;
                 foreach (Faction f in factions)
@@ -192,13 +179,8 @@ namespace RPGv2
                     {
                         Event newEvent = new Event(el);
                         EventVar e = newEvent.Chosen;
-                        if (DISPLAY)
-                        {
-                            Console.SetCursorPosition(7, 1);
-                            Console.Write("                ");
-                            Console.SetCursorPosition(7, 1);
-                            Console.Write(e.Name);
-                        }
+                        Pages.hsPage.EventNameText = "Event: " + e.Name;
+
                         switch (e.Name)
                         {
                             #region none
@@ -281,13 +263,7 @@ namespace RPGv2
                                 factions.Add(newFaction);
                                 newFaction.HistoricalEvents.Add(new HistoricalEvent("Broke off from " + f.Name, i));
                                 h.Map.InitFaction(newFaction);
-                                if (DISPLAY)
-                                {
-                                    Console.SetCursorPosition(0, 3);
-                                    Console.Write("                                                                      ");
-                                    Console.SetCursorPosition(0, 3);
-                                    Console.Write("{0} has been created!", newFaction.Name);
-                                }
+                                Pages.hsPage.FactionCreatedText = "New Faction: " + newFaction.Name;
                                 break;
                             #region default
                             default:
@@ -396,7 +372,7 @@ namespace RPGv2
                                 if (!w.OnGoing)
                                     wars.Remove(w);
                             }
-                            foreach(War w in wars)
+                            foreach (War w in wars)
                             {
                                 fac.HistoricalEvents.Add(new HistoricalEvent(String.Format("At war with {0} since {1}", w.Side2, w.StartYear), w.StartYear));
                             }
@@ -407,12 +383,12 @@ namespace RPGv2
                 foreach (Tile t in h.Map.Tiles)
                 {
                     exists = false;
-                    foreach(Faction fac in factions)
+                    foreach (Faction fac in factions)
                     {
                         if (fac == t.Occ || t.Type == "W")
                             exists = true;
                     }
-                    if(!exists)
+                    if (!exists)
                     {
                         t.Occ = null;
                         t.Type = "L";
@@ -424,13 +400,8 @@ namespace RPGv2
                     if (f.Pop <= 0)
                     {
                         factions.Remove(f);
-                        if (DISPLAY)
-                        {
-                            Console.SetCursorPosition(0, 2);
-                            Console.Write("                                                                      ");
-                            Console.SetCursorPosition(0, 2);
-                            Console.Write("{0} has fallen!", f.Name);
-                        }
+                        Pages.hsPage.FactionFallenText = "Faction fallen: " + f.Name;
+
                     }
                 }
                 #endregion

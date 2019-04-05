@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using RPGWPF;
 using System.Windows;
 using System.Diagnostics;
+using System.Windows.Media.Imaging;
 
 namespace RPGv2
 {
@@ -31,6 +32,26 @@ namespace RPGv2
         private static readonly Random random = new Random();
         private static readonly object syncLock = new object();
 
+        public static void Refresh(this UIElement uiElement)
+        {
+            uiElement.Dispatcher.Invoke(DispatcherPriority.Background, new Action(() => { }));
+        }
+
+        public static BitmapImage BitmapToImageSource(Bitmap bitmap)
+        {
+            using (MemoryStream memory = new MemoryStream())
+            {
+                bitmap.Save(memory, System.Drawing.Imaging.ImageFormat.Bmp);
+                memory.Position = 0;
+                BitmapImage bitmapimage = new BitmapImage();
+                bitmapimage.BeginInit();
+                bitmapimage.StreamSource = memory;
+                bitmapimage.CacheOption = BitmapCacheOption.OnLoad;
+                bitmapimage.EndInit();
+
+                return bitmapimage;
+            }
+        }
         public static int RandomNumber(int min, int max)
         {
             lock (syncLock)
@@ -204,6 +225,9 @@ namespace RPGv2
     public class GlobalValues
     {
         public static int inp = -1;
+        
+
+
 
         public static int Inp
         {
@@ -217,6 +241,7 @@ namespace RPGv2
     public class Pages
     {
         public static StartPage sPage = new StartPage();
+        public static HistorySim hsPage = new HistorySim();
     }
 
     public class Map
@@ -254,9 +279,6 @@ namespace RPGv2
         {
             Img = Image.FromFile(s);
             Bitmap bmp = new Bitmap(Img);
-            Console.Clear();
-            Console.WriteLine("Loading Map...");
-            Console.ReadKey();
             for (int y = 0; y <= Img.Height - 1; y++)
                 for (int x = 0; x <= Img.Width - 1; x++)
                 {

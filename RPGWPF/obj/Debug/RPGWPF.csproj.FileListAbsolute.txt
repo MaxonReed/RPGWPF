@@ -55,3 +55,5 @@ C:\Users\chris\Documents\GitHub\RPGWPF\RPGWPF\obj\Debug\RPGWPF.csproj.CoreCompil
 C:\Users\chris\Documents\GitHub\RPGWPF\RPGWPF\obj\Debug\RPGWPF.csproj.CopyComplete
 C:\Users\chris\Documents\GitHub\RPGWPF\RPGWPF\obj\Debug\RPGWPF.exe
 C:\Users\chris\Documents\GitHub\RPGWPF\RPGWPF\obj\Debug\RPGWPF.pdb
+C:\Users\chris\Documents\GitHub\RPGWPF\RPGWPF\obj\Debug\HistorySim.g.cs
+C:\Users\chris\Documents\GitHub\RPGWPF\RPGWPF\obj\Debug\HistorySim.baml
